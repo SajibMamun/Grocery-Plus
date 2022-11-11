@@ -63,6 +63,7 @@ public class RegistrationAcitivity extends AppCompatActivity {
     }
 
 
+    //user account creation part
     private void CreateUserAccount() {
         String userName = nameet.getText().toString().trim();
         String userEmail = emailet.getText().toString().trim();

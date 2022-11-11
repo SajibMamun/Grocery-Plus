@@ -27,6 +27,7 @@
         app:startIconDrawable="@drawable/email">
 
         <EditText
+            android:id="@+id/LoginEmailEtid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -46,6 +47,7 @@
         app:startIconDrawable="@drawable/password">
 
         <EditText
+            android:id="@+id/LoginPasswordEtid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -60,6 +62,7 @@
         android:text="Sign iN"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
+        android:onClick="Signinbtnclickedfunction"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,6 +86,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="Sign Up"
+            android:onClick="SignUptvfunctionclicked"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#F44336"
