@@ -43,7 +43,6 @@ ProgressBar progressBar;
         imageSlider =findViewById(R.id.image_slider);
 
 
-
         ArrayList<SlideModel> imageList = new ArrayList<>();
 
 
