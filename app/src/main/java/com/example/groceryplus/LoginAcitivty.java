@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +19,7 @@ public class LoginAcitivty extends AppCompatActivity {
     EditText emailet,passet;
     FirebaseAuth auth;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    ProgressBar progressBar;
 
 
     @Override
@@ -28,10 +30,13 @@ public class LoginAcitivty extends AppCompatActivity {
         emailet=findViewById(R.id.LoginEmailEtid);
         passet=findViewById(R.id.LoginPasswordEtid);
         auth=FirebaseAuth.getInstance();
+        progressBar=findViewById(R.id.progressbarid);
+        progressBar.setVisibility(View.GONE);
     }
 
     public void Signinbtnclickedfunction(View view) {
         userlogin();
+        progressBar.setVisibility(View.VISIBLE);
     }
 
 
@@ -90,11 +95,13 @@ public class LoginAcitivty extends AppCompatActivity {
 
                           if(task.isSuccessful())
                           {
+                              progressBar.setVisibility(View.GONE);
                               Toast.makeText(getApplicationContext(),"Login Done",Toast.LENGTH_LONG).show();
 
                           }
                           else
                           {
+                              progressBar.setVisibility(View.GONE);
                               Toast.makeText(getApplicationContext(),"Error: "+task.getException(),Toast.LENGTH_LONG).show();
 
                           }

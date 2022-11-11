@@ -8,15 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 ImageSlider imageSlider;
+FirebaseAuth firebaseAuth;
+ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +30,19 @@ ImageSlider imageSlider;
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+        firebaseAuth=FirebaseAuth.getInstance();
+        progressBar=findViewById(R.id.progressbarid);
+        progressBar.setVisibility(View.GONE);
+
+        if(firebaseAuth.getCurrentUser()!=null)
+        {
+            progressBar.setVisibility(View.GONE);
+            Toast.makeText(getApplicationContext(),"Already Logged In",Toast.LENGTH_LONG).show();
+        }
 
         imageSlider =findViewById(R.id.image_slider);
+
+
 
         ArrayList<SlideModel> imageList = new ArrayList<>();
 

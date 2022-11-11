@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.groceryplus.Models.UserDataModel;
@@ -22,6 +23,7 @@ public class RegistrationAcitivity extends AppCompatActivity {
     FirebaseAuth auth;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     FirebaseDatabase database;
+    ProgressBar progressBar;
 
 
     @Override
@@ -34,6 +36,9 @@ public class RegistrationAcitivity extends AppCompatActivity {
         confirmpasset = findViewById(R.id.ConfirmPasswordEtid);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        progressBar=findViewById(R.id.progressbarid);
+        progressBar.setVisibility(View.GONE);
+
 
     }
 
@@ -59,6 +64,7 @@ public class RegistrationAcitivity extends AppCompatActivity {
             confirmpasset.setError("Password Doesn't Match");
         } else {
             CreateUserAccount();
+            progressBar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -80,9 +86,10 @@ public class RegistrationAcitivity extends AppCompatActivity {
                             String id = task.getResult().getUser().getUid();
                             database.getReference().child("Users").child(id).setValue(userDataModel);
                             //////////
-
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
                         } else {
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(getApplicationContext(), "Unsuccess Regristration: " + task.getException(), Toast.LENGTH_LONG).show();
                         }
 
