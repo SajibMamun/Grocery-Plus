@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/mobile_navigation2"
     app:startDestination="@+id/nav_home">
 
     <fragment
@@ -12,14 +12,39 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.groceryplus.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_profile"
+        android:name="com.example.groceryplus.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.groceryplus.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_catagory"
+        android:name="com.example.groceryplus.ui.catagories.CatagoryFragment"
+        android:label="Catagory"
+        tools:layout="@layout/fargment_catagory" />
+    <fragment
+        android:id="@+id/nav_offers"
+        android:name="com.example.groceryplus.OfferFragmet"
+        android:label="Offers"
+        tools:layout="@layout/fragment_offer_fragmet" />
+    <fragment
+        android:id="@+id/nav_newproduct"
+        android:name="com.example.groceryplus.NewProductFragment"
+        android:label="Products"
+        tools:layout="@layout/fragment_new_product" />
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.example.groceryplus.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/nav_myorders"
+        android:name="com.example.groceryplus.MyOrderFragment"
+        android:label="My Order"
+        tools:layout="@layout/fragment_my_order" />
+    <fragment
+        android:id="@+id/nav_globalproduct"
+        android:name="com.example.groceryplus.GlobalProductFragment"
+        android:label="Global Product"
+        tools:layout="@layout/fragment_global_product" />
 </navigation>

@@ -1,68 +1,60 @@
 package com.example.groceryplus;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.view.Menu;
 
-import com.denzcoskun.imageslider.ImageSlider;
-import com.denzcoskun.imageslider.constants.ScaleTypes;
-import com.denzcoskun.imageslider.models.SlideModel;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.groceryplus.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-ImageSlider imageSlider;
-FirebaseAuth firebaseAuth;
-ProgressBar progressBar;
+
+    private AppBarConfiguration mAppBarConfiguration;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-        progressBar=findViewById(R.id.progressbarid);
-        progressBar.setVisibility(View.GONE);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        if(firebaseAuth.getCurrentUser()!=null)
-        {
-            progressBar.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(),"Already Logged In",Toast.LENGTH_LONG).show();
-        }
+        setSupportActionBar(binding.appBarMain.toolbar);
 
-        imageSlider =findViewById(R.id.image_slider);
-
-
-        ArrayList<SlideModel> imageList = new ArrayList<>();
-
-
-        imageList.add(new SlideModel(R.drawable.chaldal, ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.cosmetics,ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.fishimages,ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.harpic,ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.vegetable,ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.fruits,ScaleTypes.CENTER_CROP));
-
-        imageSlider.setImageList(imageList);
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_profile, R.id.nav_catagory,
+                R.id.nav_myorders,R.id.nav_cart,R.id.nav_offers,R.id.nav_newproduct,R.id.nav_globalproduct)
+                .setOpenableLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    public void Signinbtnclicked(View view) {
-        Intent intent=new Intent(this,LoginAcitivty.class);
-        startActivity(intent);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
-    public void createnwaccpuntbtnclicked(View view) {
-        Intent intent=new Intent(this, RegistrationAcitivity.class);
-        startActivity(intent);
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }

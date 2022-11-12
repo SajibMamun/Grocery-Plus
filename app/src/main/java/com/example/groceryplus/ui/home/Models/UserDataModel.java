@@ -1,4 +1,4 @@
-package com.example.groceryplus.Models;
+package com.example.groceryplus.ui.home.Models;
 
 public class UserDataModel {
     String name;
