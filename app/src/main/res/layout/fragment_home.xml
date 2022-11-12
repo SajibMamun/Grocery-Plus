@@ -1,22 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/search_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/searchbg"
+            android:drawableRight="@drawable/search"
+            android:drawablePadding="5dp"
+            android:elevation="3dp"
+            android:hint="Search Here"
+            android:padding="13dp"
+            android:textAlignment="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Popular"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/viewallproductid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="7dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="View All"
+                android:textColor="#E91E63"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerViewPopularID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" />
+
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:layout_marginRight="10dp"
+           android:orientation="horizontal"
+           android:weightSum="2">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="Explore"
+              android:textSize="18sp"
+              android:textStyle="bold" />
+
+          <TextView
+              android:id="@+id/ExploreAllid"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="7dp"
+              android:layout_weight="1"
+              android:gravity="end"
+              android:text="Explore All"
+              android:textColor="#E91E63"
+              android:textSize="16sp"
+              android:textStyle="bold" />
+
+
+       </LinearLayout>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/RecyclerViewExploreID"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="5dp" />
+
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:layout_marginRight="10dp"
+           android:orientation="horizontal"
+           android:weightSum="2">
+
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="Recommended"
+              android:textSize="18sp"
+              android:textStyle="bold" />
+
+          <TextView
+              android:id="@+id/ReconmendedAllid"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginRight="7dp"
+              android:layout_weight="1"
+              android:gravity="end"
+              android:text="Recommended All"
+              android:textColor="#E91E63"
+              android:textSize="16sp"
+              android:textStyle="bold" />
+
+
+       </LinearLayout>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/RecyclerViewRecommendedID"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_margin="5dp" />
+
+    </LinearLayout>
+</ScrollView>
