@@ -1,143 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/search_box"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/searchbg"
-            android:drawableRight="@drawable/search"
-            android:drawablePadding="5dp"
-            android:elevation="3dp"
-            android:hint="Search Here"
-            android:padding="13dp"
-            android:textAlignment="center" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbarid"
+        android:layout_centerInParent="true"
+        />
+
+    <ScrollView
+        android:id="@+id/scrollviewid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:orientation="vertical">
 
-            <TextView
+            <EditText
+                android:id="@+id/search_box"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Popular"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_margin="10dp"
+                android:background="@drawable/searchbg"
+                android:drawableRight="@drawable/search"
+                android:drawablePadding="5dp"
+                android:elevation="3dp"
+                android:hint="Search Here"
+                android:padding="13dp"
+                android:textAlignment="center" />
 
-            <TextView
-                android:id="@+id/viewallproductid"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="7dp"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="View All"
-                android:textColor="#E91E63"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Popular"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/viewallproductid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="View All"
+                    android:textColor="#E91E63"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerViewPopularID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Explore"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ExploreAllid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Explore All"
+                    android:textColor="#E91E63"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerViewExploreID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Recommended"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/ReconmendedAllid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Recommended All"
+                    android:textColor="#E91E63"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerViewRecommendedID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
 
         </LinearLayout>
+    </ScrollView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerViewPopularID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp" />
-
-
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginLeft="10dp"
-           android:layout_marginRight="10dp"
-           android:orientation="horizontal"
-           android:weightSum="2">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:text="Explore"
-              android:textSize="18sp"
-              android:textStyle="bold" />
-
-          <TextView
-              android:id="@+id/ExploreAllid"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginRight="7dp"
-              android:layout_weight="1"
-              android:gravity="end"
-              android:text="Explore All"
-              android:textColor="#E91E63"
-              android:textSize="16sp"
-              android:textStyle="bold" />
-
-
-       </LinearLayout>
-
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/RecyclerViewExploreID"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_margin="5dp" />
-
-
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginLeft="10dp"
-           android:layout_marginRight="10dp"
-           android:orientation="horizontal"
-           android:weightSum="2">
-
-          <TextView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:text="Recommended"
-              android:textSize="18sp"
-              android:textStyle="bold" />
-
-          <TextView
-              android:id="@+id/ReconmendedAllid"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginRight="7dp"
-              android:layout_weight="1"
-              android:gravity="end"
-              android:text="Recommended All"
-              android:textColor="#E91E63"
-              android:textSize="16sp"
-              android:textStyle="bold" />
-
-
-       </LinearLayout>
-
-       <androidx.recyclerview.widget.RecyclerView
-           android:id="@+id/RecyclerViewRecommendedID"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_margin="5dp" />
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

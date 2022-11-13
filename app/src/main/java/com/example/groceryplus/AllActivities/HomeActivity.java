@@ -38,7 +38,6 @@ public class HomeActivity extends AppCompatActivity {
         if (firebaseAuth.getCurrentUser() != null) {
             progressBar.setVisibility(View.VISIBLE);
             startActivity(new Intent(HomeActivity.this, MainActivity.class));
-            Toast.makeText(getApplicationContext(), "Already Logged In", Toast.LENGTH_LONG).show();
             finish();
         }
 

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     RecyclerView poprec,homecatRec,RecomRec;
+    ProgressBar progressBar;
+    ScrollView scrollView;
 
     //popular item
     PopularAdapter popularAdapter;
@@ -49,6 +53,7 @@ public class HomeFragment extends Fragment {
     RecomndedAdapter recomndedAdapter;
 
 
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         HomeViewModel homeViewModel =
@@ -62,6 +67,13 @@ public class HomeFragment extends Fragment {
         homecatRec=root.findViewById(R.id.RecyclerViewExploreID);
         RecomRec=root.findViewById(R.id.RecyclerViewRecommendedID);
 
+        progressBar=root.findViewById(R.id.progressbarid);
+        scrollView=root.findViewById(R.id.scrollviewid);
+
+
+        //// visibility
+        progressBar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
 
 
         poprec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -82,6 +94,9 @@ public class HomeFragment extends Fragment {
                                 PopularModel popularModel = document.toObject(PopularModel.class);
                                 popularModelList.add(popularModel);
                                 popularAdapter.notifyDataSetChanged();
+
+                                progressBar.setVisibility(View.GONE);
+                                scrollView.setVisibility(View.VISIBLE);
 
                             }
                         } else {
