@@ -30,7 +30,7 @@
             android:title="Offers" />
         <item
             android:id="@+id/nav_newproduct"
-            android:icon="@drawable/product"
+            android:icon="@drawable/newproduct"
             android:title="New Product" />
         <item
             android:id="@+id/nav_globalproduct"

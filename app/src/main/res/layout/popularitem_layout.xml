@@ -39,7 +39,7 @@
             android:layout_marginRight="5dp"
             android:maxLines="1"
             android:singleLine="true"
-            android:textSize="17sp" />
+            android:textSize="14sp" />
 
 
         <LinearLayout
