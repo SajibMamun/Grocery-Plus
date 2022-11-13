@@ -13,7 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.groceryplus.Adapters.HomeCatagoryAdapter;
 import com.example.groceryplus.Adapters.PopularAdapter;
+import com.example.groceryplus.Models.HomeCatagoryModel;
 import com.example.groceryplus.Models.PopularModel;
 import com.example.groceryplus.R;
 import com.example.groceryplus.databinding.FragmentHomeBinding;
@@ -28,10 +30,17 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView poprec;
+    RecyclerView poprec,homecatRec;
+
+    //popular item
     PopularAdapter popularAdapter;
     List<PopularModel> popularModelList;
     FirebaseFirestore db;
+
+    //CatagoryItem
+    List<HomeCatagoryModel> homeCatagoryModelList;
+    HomeCatagoryAdapter homeCatagoryAdapter;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +51,10 @@ public class HomeFragment extends Fragment {
 
         poprec = root.findViewById(R.id.RecyclerViewPopularID);
         db = FirebaseFirestore.getInstance();
+
+        homecatRec=root.findViewById(R.id.RecyclerViewExploreID);
+
+
 
         poprec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
@@ -61,6 +74,39 @@ public class HomeFragment extends Fragment {
                                 PopularModel popularModel = document.toObject(PopularModel.class);
                                 popularModelList.add(popularModel);
                                 popularAdapter.notifyDataSetChanged();
+
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
+
+
+
+        //Catagoryitem
+
+        homecatRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        homeCatagoryModelList = new ArrayList<>();
+        homeCatagoryAdapter = new HomeCatagoryAdapter(getActivity(),homeCatagoryModelList);
+        homecatRec.setAdapter(homeCatagoryAdapter);
+
+
+//popular data load form firestore
+        db.collection("HomeCatagories")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                HomeCatagoryModel homeCatagoryModel = document.toObject(HomeCatagoryModel.class);
+                                homeCatagoryModelList.add(homeCatagoryModel);
+                                homeCatagoryAdapter.notifyDataSetChanged();
 
                             }
                         } else {
