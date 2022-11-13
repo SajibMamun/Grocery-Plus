@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.groceryplus.Adapters.HomeCatagoryAdapter;
 import com.example.groceryplus.Adapters.PopularAdapter;
+import com.example.groceryplus.Adapters.RecomndedAdapter;
 import com.example.groceryplus.Models.HomeCatagoryModel;
 import com.example.groceryplus.Models.PopularModel;
+import com.example.groceryplus.Models.RecomndedModel;
 import com.example.groceryplus.R;
 import com.example.groceryplus.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,7 +32,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView poprec,homecatRec;
+    RecyclerView poprec,homecatRec,RecomRec;
 
     //popular item
     PopularAdapter popularAdapter;
@@ -40,6 +42,11 @@ public class HomeFragment extends Fragment {
     //CatagoryItem
     List<HomeCatagoryModel> homeCatagoryModelList;
     HomeCatagoryAdapter homeCatagoryAdapter;
+
+
+    //Recomanded Item
+    List<RecomndedModel> recomndedModelList;
+    RecomndedAdapter recomndedAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,6 +60,7 @@ public class HomeFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
 
         homecatRec=root.findViewById(R.id.RecyclerViewExploreID);
+        RecomRec=root.findViewById(R.id.RecyclerViewRecommendedID);
 
 
 
@@ -95,7 +103,7 @@ public class HomeFragment extends Fragment {
         homecatRec.setAdapter(homeCatagoryAdapter);
 
 
-//popular data load form firestore
+//Catagory data load form firestore
         db.collection("HomeCatagories")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -115,6 +123,38 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
+
+
+        RecomRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+
+        recomndedModelList = new ArrayList<>();
+        recomndedAdapter = new RecomndedAdapter(getActivity(), recomndedModelList);
+        RecomRec.setAdapter(recomndedAdapter);
+
+//Recomanded data load form firestore
+        db.collection("RecomandedProduct")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+
+                                RecomndedModel recomndedModel = document.toObject(RecomndedModel.class);
+                                recomndedModelList.add(recomndedModel);
+                                recomndedAdapter.notifyDataSetChanged();
+
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
+
+
+
 
         return root;
     }
