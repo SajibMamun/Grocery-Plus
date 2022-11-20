@@ -5,10 +5,26 @@
     android:layout_height="match_parent"
     tools:context=".NewProductFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="New Product" />
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/newproduct1"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No New Product Available"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
 
 </FrameLayout>

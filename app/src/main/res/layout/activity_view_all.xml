@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewAllActivity"
+    android:orientation="vertical">
+    
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E91E63"
+        app:title="View All Products"
+        app:titleTextColor="#FFF"
+        app:subtitleTextColor="#FFF"
+
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/view_all_rec_id"
+        />
+
+
+</LinearLayout>
