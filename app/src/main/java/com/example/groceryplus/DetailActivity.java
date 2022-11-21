@@ -128,6 +128,7 @@ public class DetailActivity extends AppCompatActivity {
         carMap.put("currentTime",saveCurrentTime);
         carMap.put("totalQuantity",quantity.getText().toString());
         carMap.put("totalprice",totalprice);
+        carMap.put("productImage",viewAllModel.getImg_url());
         firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
                 .collection("CurrentUser").add(carMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override

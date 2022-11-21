@@ -5,26 +5,83 @@
     android:layout_height="match_parent"
     tools:context=".CartFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
         >
 
-<ImageView
-    android:layout_width="250dp"
-    android:layout_height="100dp"
-    android:src="@drawable/addtocart"
-    />
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your Cart is Empty"
-            android:textSize="30sp"
-            android:textAlignment="center"
-            />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Price:"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:id="@+id/totalpriceTv"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_below="@id/totalpriceTv"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="match_parent"
+                android:id="@+id/cartRecyclerviewid"
+                android:layout_above="@id/placeorderbtnid"
+                android:layout_marginBottom="10dp"
+                />
+
+
+            <Button
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/placeorderbtnid"
+                android:padding="10dp"
+                android:text="Place to Order"
+                android:textSize="25sp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentBottom="true"
+                />
+
+        </RelativeLayout>
+
+
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:visibility="gone"
+    >
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:src="@drawable/addtocart"
+        android:id="@+id/emptycarimg"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:layout_below="@id/emptycarimg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Cart is Empty"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        />
+
+</RelativeLayout>
+
+    </RelativeLayout>
 
 
 
