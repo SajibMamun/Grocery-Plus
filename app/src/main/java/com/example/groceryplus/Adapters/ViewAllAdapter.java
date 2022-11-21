@@ -1,6 +1,7 @@
 package com.example.groceryplus.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.groceryplus.DetailActivity;
 import com.example.groceryplus.Models.ViewAllModel;
 import com.example.groceryplus.R;
 
@@ -48,14 +50,26 @@ public class ViewAllAdapter extends RecyclerView.Adapter<ViewAllAdapter.ViewHold
             holder.viewPrice.setText(viewAllModelList.get(position).getPrice() + "৳" + "/pcs");
         }
         if (viewAllModelList.get(position).getType().equals("egg")) {
-            holder.viewPrice.setText(viewAllModelList.get(position).getPrice() + "৳"+"/12pcs");
+            holder.viewPrice.setText(viewAllModelList.get(position).getPrice() + "৳" + "/12pcs");
         }
         if (viewAllModelList.get(position).getType().equals("vegetable")) {
             holder.viewPrice.setText(viewAllModelList.get(position).getPrice() + "৳" + "/KG");
         }
- if (viewAllModelList.get(position).getType().equals("fruit")) {
+        if (viewAllModelList.get(position).getType().equals("fruit")) {
             holder.viewPrice.setText(viewAllModelList.get(position).getPrice() + "৳" + "/KG");
         }
+
+
+
+holder.itemView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(context, DetailActivity.class);
+       intent.putExtra("detail", viewAllModelList.get(position));
+        context.startActivity(intent);
+
+    }
+});
 
 
     }

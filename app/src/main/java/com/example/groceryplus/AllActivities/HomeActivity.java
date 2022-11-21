@@ -47,12 +47,12 @@ public class HomeActivity extends AppCompatActivity {
         ArrayList<SlideModel> imageList = new ArrayList<>();
 
 
-        imageList.add(new SlideModel(R.drawable.chaldal, ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.cosmetics, ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.fishimages, ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.harpic, ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.vegetable, ScaleTypes.CENTER_CROP));
-        imageList.add(new SlideModel(R.drawable.fruits, ScaleTypes.CENTER_CROP));
+        imageList.add(new SlideModel(R.drawable.chaldal, ScaleTypes.FIT));
+        imageList.add(new SlideModel(R.drawable.cosmetics, ScaleTypes.FIT));
+        imageList.add(new SlideModel(R.drawable.fishimages, ScaleTypes.FIT));
+        imageList.add(new SlideModel(R.drawable.harpic, ScaleTypes.FIT));
+        imageList.add(new SlideModel(R.drawable.vegetable, ScaleTypes.FIT));
+        imageList.add(new SlideModel(R.drawable.fruits, ScaleTypes.FIT));
 
         imageSlider.setImageList(imageList);
     }
