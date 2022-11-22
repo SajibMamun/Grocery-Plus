@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.groceryplus.Models.UserDataModel;
@@ -24,6 +25,7 @@ public class RegistrationAcitivity extends AppCompatActivity {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     FirebaseDatabase database;
     ProgressBar progressBar;
+    String Gender;
 
 
     @Override
@@ -33,11 +35,15 @@ public class RegistrationAcitivity extends AppCompatActivity {
         nameet = findViewById(R.id.NameEtid);
         emailet = findViewById(R.id.EmailEtid);
         passet = findViewById(R.id.PasswordEtid);
+
         confirmpasset = findViewById(R.id.ConfirmPasswordEtid);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         progressBar=findViewById(R.id.progressbarid);
         progressBar.setVisibility(View.GONE);
+
+
+
 
 
     }
@@ -62,7 +68,10 @@ public class RegistrationAcitivity extends AppCompatActivity {
 
         } else if (!passet.getText().toString().trim().equals(confirmpasset.getText().toString().trim())) {
             confirmpasset.setError("Password Doesn't Match");
-        } else {
+        }
+
+        else{
+
             CreateUserAccount();
             progressBar.setVisibility(View.VISIBLE);
         }
@@ -74,27 +83,32 @@ public class RegistrationAcitivity extends AppCompatActivity {
         String userName = nameet.getText().toString().trim();
         String userEmail = emailet.getText().toString().trim();
         String userPassword = passet.getText().toString().trim();
-        auth.createUserWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
 
 
-                            //Firebase database part
-                            UserDataModel userDataModel = new UserDataModel(userName, userEmail, userPassword);
-                            String id = task.getResult().getUser().getUid();
-                            database.getReference().child("Users").child(id).setValue(userDataModel);
-                            //////////
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
-                        } else {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(getApplicationContext(), "Unsuccess Regristration: " + task.getException(), Toast.LENGTH_LONG).show();
-                        }
 
-                    }
-                });
+
+              auth.createUserWithEmailAndPassword(userEmail, userPassword)
+                      .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                          @Override
+                          public void onComplete(@NonNull Task<AuthResult> task) {
+                              if (task.isSuccessful()) {
+
+
+                                  //Firebase database part
+                                  UserDataModel userDataModel = new UserDataModel(userName, userEmail, userPassword);
+                                  String id = task.getResult().getUser().getUid();
+                                  database.getReference().child("Users").child(id).setValue(userDataModel);
+                                  //////////
+                                  progressBar.setVisibility(View.GONE);
+                                  Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_LONG).show();
+                              } else {
+                                  progressBar.setVisibility(View.GONE);
+                                  Toast.makeText(getApplicationContext(), "Unsuccess Regristration: " + task.getException(), Toast.LENGTH_LONG).show();
+                              }
+
+                          }
+                      });
+
 
     }
 

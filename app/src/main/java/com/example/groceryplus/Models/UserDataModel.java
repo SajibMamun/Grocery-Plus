@@ -4,6 +4,8 @@ public class UserDataModel {
     String name;
     String email;
     String password;
+    String profileImg;
+
 
     public UserDataModel() {
     }
@@ -12,6 +14,15 @@ public class UserDataModel {
         this.name = name;
         this.email = email;
         this.password = password;
+
+    }
+
+    public String getProfileImg() {
+        return profileImg;
+    }
+
+    public void setProfileImg(String profileImg) {
+        this.profileImg = profileImg;
     }
 
     public String getName() {
@@ -37,4 +48,6 @@ public class UserDataModel {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

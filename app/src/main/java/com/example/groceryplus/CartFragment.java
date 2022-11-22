@@ -61,19 +61,13 @@ public class CartFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-        progressBar = root.findViewById(R.id.progressbarid);
-        progressBar.setVisibility(View.VISIBLE);
+
 
 
         totalPriceTv = root.findViewById(R.id.totalpriceTv);
         mycartModelList = new ArrayList<>();
 
 
-
-    /*    LocalBroadcastManager.getInstance(getActivity())
-                .registerReceiver(mMessageReciver, new IntentFilter("TotalAllAmmount"));
-
-     */
         placeorderbtn=root.findViewById(R.id.placeorderbtnid);
         placeorderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +81,6 @@ public class CartFragment extends Fragment {
 
 
         recyclerView = root.findViewById(R.id.cartRecyclerviewid);
-        recyclerView.setVisibility(View.GONE);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mycartAdapter = new MycartAdapter(getActivity(), mycartModelList);
@@ -99,17 +92,16 @@ public class CartFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                         for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+
+                            String documentId=documentSnapshot.getId();
                             MycartModel mycartModel = documentSnapshot.toObject(MycartModel.class);
+                           mycartModel.setDocumentId(documentId);
                             mycartModelList.add(mycartModel);
 
                             totalprice += mycartModel.getTotalprice();
-
                             totalPriceTv.setText("Total Bill: " + totalprice + " ৳");
-
-
                             mycartAdapter.notifyDataSetChanged();
-                            progressBar.setVisibility(View.GONE);
-                            recyclerView.setVisibility(View.VISIBLE);
+
                         }
                     }
                 });
