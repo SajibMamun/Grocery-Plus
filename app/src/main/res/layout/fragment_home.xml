@@ -37,6 +37,16 @@
                 android:padding="13dp"
                 android:textAlignment="center" />
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/search_recid"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

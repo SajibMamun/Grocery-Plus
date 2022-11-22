@@ -1,14 +1,10 @@
 package com.example.groceryplus;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +26,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -61,19 +56,16 @@ public class CartFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
 
 
-
-
-
         totalPriceTv = root.findViewById(R.id.totalpriceTv);
         mycartModelList = new ArrayList<>();
 
 
-        placeorderbtn=root.findViewById(R.id.placeorderbtnid);
+        placeorderbtn = root.findViewById(R.id.placeorderbtnid);
         placeorderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), PlaceOrderActivity.class);
-                 intent.putExtra("itemList", (Serializable) mycartModelList);
+                intent.putExtra("itemList", (Serializable) mycartModelList);
                 startActivity(intent);
 
             }
@@ -93,16 +85,14 @@ public class CartFragment extends Fragment {
 
                         for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
 
-                            String documentId=documentSnapshot.getId();
+                            String documentId = documentSnapshot.getId();
                             MycartModel mycartModel = documentSnapshot.toObject(MycartModel.class);
-                           mycartModel.setDocumentId(documentId);
+                            mycartModel.setDocumentId(documentId);
                             mycartModelList.add(mycartModel);
-
-                            totalprice += mycartModel.getTotalprice();
-                            totalPriceTv.setText("Total Bill: " + totalprice + " ৳");
                             mycartAdapter.notifyDataSetChanged();
 
                         }
+                        calculateTotalAmmount(mycartModelList);
                     }
                 });
 
@@ -110,16 +100,14 @@ public class CartFragment extends Fragment {
         return root;
     }
 
-
-  /*  public BroadcastReceiver mMessageReciver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            int totalBill = intent.getIntExtra("totalAmount", 0);
-
+    private void calculateTotalAmmount(List<MycartModel> mycartModelList) {
+        double totalAmmount = 0.0;
+        for (MycartModel mycartModel : mycartModelList) {
+            totalAmmount += mycartModel.getTotalprice();
         }
-    }; */
+        totalPriceTv.setText("Total Bill: " + totalAmmount + " ৳");
 
+    }
 
 
 }
