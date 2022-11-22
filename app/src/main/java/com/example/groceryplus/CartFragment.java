@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.groceryplus.Adapters.MycartAdapter;
@@ -26,6 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,6 +42,9 @@ public class CartFragment extends Fragment {
     List<MycartModel> mycartModelList;
     FirebaseFirestore db;
     TextView totalPriceTv;
+    ProgressBar progressBar;
+    int totalprice = 0;
+    Button placeorderbtn;
 
     public CartFragment() {
         // Required empty public constructor
@@ -49,50 +55,79 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View root= inflater.inflate(R.layout.fragment_cart, container, false);
+        View root = inflater.inflate(R.layout.fragment_cart, container, false);
+
+        db = FirebaseFirestore.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
+        progressBar = root.findViewById(R.id.progressbarid);
+        progressBar.setVisibility(View.VISIBLE);
+
+
+        totalPriceTv = root.findViewById(R.id.totalpriceTv);
+        mycartModelList = new ArrayList<>();
 
 
 
-        db=FirebaseFirestore.getInstance();
-       firebaseAuth=FirebaseAuth.getInstance();
-       recyclerView= root.findViewById(R.id.cartRecyclerviewid);
+    /*    LocalBroadcastManager.getInstance(getActivity())
+                .registerReceiver(mMessageReciver, new IntentFilter("TotalAllAmmount"));
 
-        totalPriceTv=root.findViewById(R.id.totalpriceTv);
-        LocalBroadcastManager.getInstance(getActivity())
-                        .registerReceiver(mMessageReciver,new IntentFilter("TotalAllAmmount"));
+     */
+        placeorderbtn=root.findViewById(R.id.placeorderbtnid);
+        placeorderbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PlaceOrderActivity.class);
+                 intent.putExtra("itemList", (Serializable) mycartModelList);
+                startActivity(intent);
 
-
-
-       recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-       mycartModelList=new ArrayList<>();
-
-       mycartAdapter=new MycartAdapter(getActivity(),mycartModelList);
-       recyclerView.setAdapter(mycartAdapter);
-
-       db.collection("AddToCart").document(firebaseAuth.getUid())
-               .collection("CurrentUser").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                   @Override
-                   public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                       for(DocumentSnapshot documentSnapshot:task.getResult().getDocuments()){
-                           MycartModel mycartModel=documentSnapshot.toObject(MycartModel.class);
-                           mycartModelList.add(mycartModel);
-                           mycartAdapter.notifyDataSetChanged();
-                       }
-                   }
-               });
+            }
+        });
 
 
-    return  root;
+        recyclerView = root.findViewById(R.id.cartRecyclerviewid);
+        recyclerView.setVisibility(View.GONE);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mycartAdapter = new MycartAdapter(getActivity(), mycartModelList);
+        recyclerView.setAdapter(mycartAdapter);
+
+        db.collection("CurrentUser").document(firebaseAuth.getUid())
+                .collection("AddToCart").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        for (DocumentSnapshot documentSnapshot : task.getResult().getDocuments()) {
+                            MycartModel mycartModel = documentSnapshot.toObject(MycartModel.class);
+                            mycartModelList.add(mycartModel);
+
+                            totalprice += mycartModel.getTotalprice();
+
+                            totalPriceTv.setText("Total Bill: " + totalprice + " ৳");
+
+
+                            mycartAdapter.notifyDataSetChanged();
+                            progressBar.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
+
+
+        return root;
     }
 
-    public BroadcastReceiver mMessageReciver=new BroadcastReceiver() {
+
+  /*  public BroadcastReceiver mMessageReciver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            int totalBill=intent.getIntExtra("totalAmount",0);
-            totalPriceTv.setText("Total Bill: "+totalBill+ " ৳");
+            int totalBill = intent.getIntExtra("totalAmount", 0);
+
         }
-    };
+    }; */
+
+
+
 }

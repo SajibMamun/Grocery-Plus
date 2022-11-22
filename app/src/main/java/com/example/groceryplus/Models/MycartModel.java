@@ -1,6 +1,8 @@
 package com.example.groceryplus.Models;
 
-public class MycartModel {
+import java.io.Serializable;
+
+public class MycartModel implements Serializable {
     String productName;
     String productPrice;
     String currentDate;

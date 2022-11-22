@@ -46,12 +46,12 @@ public class MycartAdapter extends RecyclerView.Adapter<MycartAdapter.ViewHolder
         holder.totalprice.setText("Total Price: "+String.valueOf(mycartModelList.get(position).getTotalprice()));
 
 
-        //total ammount calculate
+     /*   //total ammount calculate
         totalprice=totalprice+mycartModelList.get(position).getTotalprice();
         Intent intent=new Intent("TotalAllAmmount");
         intent.putExtra("totalAmount",totalprice);
 
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);*/
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.groceryplus.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.groceryplus.Models.NavCatagoryModel;
 import com.example.groceryplus.R;
+import com.example.groceryplus.ViewAllActivity;
 
 import java.util.List;
 
@@ -41,6 +43,15 @@ public class NavCatagoryAdapter extends RecyclerView.Adapter<NavCatagoryAdapter.
         holder.nav_cat_descrip.setText(navCatagoryModelList.get(position).getDescription());
         holder.nav_cat_rating.setText(navCatagoryModelList.get(position).getRating());
         holder.nav_cat_disocunt.setText(navCatagoryModelList.get(position).getDiscount());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, ViewAllActivity.class);
+                intent.putExtra("type",navCatagoryModelList.get(position).getType());
+                context.startActivity(intent);
+            }
+        });
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.groceryplus;
+package com.example.groceryplus.AllActivities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.groceryplus.Models.ViewAllModel;
+import com.example.groceryplus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -129,8 +130,9 @@ public class DetailActivity extends AppCompatActivity {
         carMap.put("totalQuantity",quantity.getText().toString());
         carMap.put("totalprice",totalprice);
         carMap.put("productImage",viewAllModel.getImg_url());
-        firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
-                .collection("CurrentUser").add(carMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+
+        firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                .collection("AddToCart").add(carMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         Toast.makeText(getApplicationContext(),"Added to cart",Toast.LENGTH_SHORT).show();
