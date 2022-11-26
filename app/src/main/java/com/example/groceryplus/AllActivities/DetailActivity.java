@@ -3,7 +3,10 @@ package com.example.groceryplus.AllActivities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +48,17 @@ public class DetailActivity extends AppCompatActivity {
         mtoolbar = findViewById(R.id.toolbarid);
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final Drawable upArrow =  ContextCompat.getDrawable(this, R.drawable.ic_back);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP);
+        this.getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        mtoolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+
+
+            }
+        });
 
 
         firestore=FirebaseFirestore.getInstance();
@@ -140,6 +154,11 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
 

@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,7 +31,6 @@ import com.example.groceryplus.Models.PopularModel;
 import com.example.groceryplus.Models.RecomndedModel;
 import com.example.groceryplus.Models.ViewAllModel;
 import com.example.groceryplus.R;
-import com.example.groceryplus.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -266,29 +264,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-    //SingoutOptionMenu
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.accountlogout:
-                FirebaseAuth.getInstance().signOut();
-                Intent intent=new Intent(getContext(),HomeActivity.class);
-                startActivity(intent);
-                break;
-
-            default:
-                break;
-        }
-
-        return true;
-    }
 
 
 }

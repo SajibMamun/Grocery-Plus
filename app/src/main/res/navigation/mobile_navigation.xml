@@ -27,11 +27,7 @@
         android:name="com.example.groceryplus.OfferFragmet"
         android:label="Offers"
         tools:layout="@layout/fragment_offer_fragmet" />
-    <fragment
-        android:id="@+id/nav_newproduct"
-        android:name="com.example.groceryplus.NewProductFragment"
-        android:label="Products"
-        tools:layout="@layout/fragment_new_product" />
+
     <fragment
         android:id="@+id/nav_cart"
         android:name="com.example.groceryplus.CartFragment"

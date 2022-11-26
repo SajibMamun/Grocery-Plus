@@ -1,13 +1,16 @@
 package com.example.groceryplus;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.groceryplus.AllActivities.HomeActivity;
 import com.example.groceryplus.Models.UserDataModel;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.groceryplus.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.groceryplus.databinding.ActivityMainBinding;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.appBarMain.toolbar);
+        setSupportActionBar(binding.appBarMain.maintoolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_profile, R.id.nav_catagory,
-                R.id.nav_myorders,R.id.nav_cart,R.id.nav_offers,R.id.nav_newproduct,R.id.nav_globalproduct)
+                R.id.nav_myorders,R.id.nav_cart,R.id.nav_offers,R.id.nav_globalproduct)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -80,8 +83,40 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
+    }
+
+
+
+
+    //Menu Option
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.accountlogout:
+
+               Intent intent=new Intent(getApplicationContext(),HomeActivity.class);
+               FirebaseAuth.getInstance().signOut();
+               startActivity(intent);
+               finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
 
     }
+
+
+
+
 
     @Override
     public boolean onSupportNavigateUp() {
