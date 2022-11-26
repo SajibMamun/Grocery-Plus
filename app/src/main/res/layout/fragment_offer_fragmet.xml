@@ -5,9 +5,132 @@
     android:layout_height="match_parent"
     tools:context=".OfferFragmet">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="My Offer" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/LL1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Level"
+                    android:textColor="#E91E63"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/RadioGroupid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/SilverMemberID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Silver Member"
+                        android:textColor="#3F51B5"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/GoldeMemberID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gold Member"
+                        android:textColor="#3F51B5"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/PlatinumMemberid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Platinum Member"
+                        android:textColor="#3F51B5"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <RadioButton
+                        android:id="@+id/DiamondMemberid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Diamond Member"
+                        android:textColor="#3F51B5"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Gold"
+                    android:textColor="#FF9800"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/Spinnerid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/checkbtn"
+            android:layout_below="@id/LL1"
+            android:layout_margin="10dp">
+
+            <ImageView
+                android:id="@+id/offerimgid"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_centerInParent="true"
+       />
+
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/checkbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:text="Check" />
+    </RelativeLayout>
+
 
 </FrameLayout>
