@@ -1,9 +1,13 @@
 package com.example.groceryplus.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -22,6 +26,7 @@ import com.example.groceryplus.Adapters.HomeCatagoryAdapter;
 import com.example.groceryplus.Adapters.PopularAdapter;
 import com.example.groceryplus.Adapters.RecomndedAdapter;
 import com.example.groceryplus.Adapters.ViewAllAdapter;
+import com.example.groceryplus.AllActivities.HomeActivity;
 import com.example.groceryplus.Models.HomeCatagoryModel;
 import com.example.groceryplus.Models.PopularModel;
 import com.example.groceryplus.Models.RecomndedModel;
@@ -30,6 +35,7 @@ import com.example.groceryplus.R;
 import com.example.groceryplus.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -83,6 +89,7 @@ public class HomeFragment extends Fragment {
         progressBar=root.findViewById(R.id.progressbarid);
         scrollView=root.findViewById(R.id.scrollviewid);
 
+        setHasOptionsMenu(true);
 
         //// visibility
         progressBar.setVisibility(View.VISIBLE);
@@ -94,6 +101,8 @@ public class HomeFragment extends Fragment {
         popularModelList = new ArrayList<>();
         popularAdapter = new PopularAdapter(getActivity(), popularModelList);
         poprec.setAdapter(popularAdapter);
+
+
 
 //popular data load form firestore
         db.collection("PopularProducts")
@@ -226,8 +235,6 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
         return root;
     }
 
@@ -256,6 +263,31 @@ public class HomeFragment extends Fragment {
                         }
                     });
         }
+    }
+
+
+    //SingoutOptionMenu
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu,menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.accountlogout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent=new Intent(getContext(),HomeActivity.class);
+                startActivity(intent);
+                break;
+
+            default:
+                break;
+        }
+
+        return true;
     }
 
 
