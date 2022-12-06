@@ -16,12 +16,17 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.groceryplus.Models.ProfileModel;
 import com.example.groceryplus.Models.UserDataModel;
 import com.example.groceryplus.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,11 +39,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     CircleImageView profileImg;
-    EditText name, email, number, address;
+    EditText nameet, emailet, numberet, addresset;
     Button update;
     FirebaseAuth firebaseAuth;
     FirebaseStorage storage;
     FirebaseDatabase firebaseDatabase;
+    FirebaseUser firebaseUser;
+    String name,email,number,address;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -49,11 +56,18 @@ public class ProfileFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         profileImg = root.findViewById(R.id.profile_imgID);
-        name = root.findViewById(R.id.profile_name_et_ID);
-        email = root.findViewById(R.id.profile_email_et_ID);
-        number = root.findViewById(R.id.profile_contact_et_ID);
-        address = root.findViewById(R.id.profile_location_et_ID);
-        update = root.findViewById(R.id.updateprofilebtnid);
+        nameet = root.findViewById(R.id.profile_name_et_ID);
+        emailet = root.findViewById(R.id.profile_email_et_ID);
+        numberet = root.findViewById(R.id.profile_contact_et_ID);
+        addresset = root.findViewById(R.id.profile_location_et_ID);
+        update=root.findViewById(R.id.updateprofilebtnid);
+
+
+
+
+
+
+
 
 
 
@@ -71,6 +85,8 @@ public class ProfileFragment extends Fragment {
                             }
                         });
 
+
+
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +98,9 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+
+
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +111,22 @@ public class ProfileFragment extends Fragment {
     }
 
     private void updateUSerProfile() {
+        String name=nameet.getText().toString().trim();
+        String email=emailet.getText().toString().trim();
+        String number=numberet.getText().toString().trim();
+        String address=addresset.getText().toString().trim();
+
+
+
+        firebaseDatabase=FirebaseDatabase.getInstance();
+        ProfileModel obj=new ProfileModel(name,email,address,number);
+        DatabaseReference DRF=firebaseDatabase.getReference("Users");
+        DRF.child(firebaseAuth.getUid()).setValue(obj);
+
+        Toast.makeText(getContext(),"Updated",Toast.LENGTH_SHORT).show();
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseDatabase.getReference().child("Users").child(FirebaseAuth.getInstance().getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserDataModel userDataModel=snapshot.getValue(UserDataModel.class);
