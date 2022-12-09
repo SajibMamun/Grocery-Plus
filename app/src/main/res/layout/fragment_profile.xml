@@ -8,15 +8,17 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_imgID"
         android:layout_width="200dp"
         android:layout_height="180dp"
-        android:src="@drawable/profile"
         android:layout_centerHorizontal="true"
-        app:civ_border_width="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/profile"
         app:civ_border_color="#E91E63"
-        android:layout_margin="20dp"/>
+        app:civ_border_width="3dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Et1"

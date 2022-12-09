@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.groceryplus.MainActivity;
 import com.example.groceryplus.R;
 import com.google.firebase.auth.FirebaseAuth;
 

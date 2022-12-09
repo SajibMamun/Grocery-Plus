@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressbarid"
         android:layout_centerInParent="true"
+        android:indeterminateTint="@color/purple_500"
+        android:progressTint="#E91E63"
         />
 
     <ScrollView

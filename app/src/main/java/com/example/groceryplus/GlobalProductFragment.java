@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.groceryplus.API.APICall;
 import com.example.groceryplus.API.ProductModelClass;
+import com.example.groceryplus.Adapters.ProductAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

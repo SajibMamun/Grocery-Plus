@@ -1,4 +1,4 @@
-package com.example.groceryplus;
+package com.example.groceryplus.AllActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.groceryplus.AllActivities.HomeActivity;
 import com.example.groceryplus.Models.UserDataModel;
+import com.example.groceryplus.R;
 import com.example.groceryplus.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationView;
 

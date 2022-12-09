@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.groceryplus.Models.PopularModel;
 import com.example.groceryplus.R;
-import com.example.groceryplus.ViewAllActivity;
+import com.example.groceryplus.AllActivities.ViewAllActivity;
 
 import java.util.List;
 

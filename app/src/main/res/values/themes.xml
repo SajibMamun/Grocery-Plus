@@ -22,4 +22,6 @@
     <style name="Theme.GroceryPlus.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.GroceryPlus.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

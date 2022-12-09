@@ -1,4 +1,4 @@
-package com.example.groceryplus;
+package com.example.groceryplus.AllActivities;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 
 import com.example.groceryplus.Adapters.ViewAllAdapter;
 import com.example.groceryplus.Models.ViewAllModel;
+import com.example.groceryplus.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;

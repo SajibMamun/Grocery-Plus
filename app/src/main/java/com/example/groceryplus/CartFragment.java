@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.groceryplus.Adapters.MycartAdapter;
+import com.example.groceryplus.AllActivities.PlaceOrderActivity;
 import com.example.groceryplus.Models.MycartModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -89,10 +90,13 @@ public class CartFragment extends Fragment {
                             MycartModel mycartModel = documentSnapshot.toObject(MycartModel.class);
                             mycartModel.setDocumentId(documentId);
                             mycartModelList.add(mycartModel);
+
                             mycartAdapter.notifyDataSetChanged();
+                            calculateTotalAmmount(mycartModelList);
+
 
                         }
-                        calculateTotalAmmount(mycartModelList);
+
                     }
                 });
 

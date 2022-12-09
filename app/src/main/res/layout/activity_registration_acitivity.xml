@@ -98,14 +98,16 @@
         android:layout_marginRight="40dp"
         android:onClick="createaccountbtnclicked"
         />
+
     <ProgressBar
+        android:id="@+id/progressbarid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:indeterminateTint="@color/purple_500"
+        android:progressTint="#E91E63"
         android:layout_below="@id/btn1"
-        android:id="@+id/progressbarid"
         android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
-        />
+        android:layout_marginTop="30dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
