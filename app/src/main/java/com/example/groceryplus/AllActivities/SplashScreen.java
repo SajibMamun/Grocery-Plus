@@ -1,4 +1,4 @@
-package com.example.groceryplus;
+package com.example.groceryplus.AllActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.groceryplus.AllActivities.HomeActivity;
+import com.example.groceryplus.R;
 
 public class SplashScreen extends AppCompatActivity {
     ProgressBar progressBar;
@@ -27,6 +27,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 startActivity(mainIntent);
                 progressBar.setVisibility(View.GONE);
+                finish();
             }
         }, 2000);
 
