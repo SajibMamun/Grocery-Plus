@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -19,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginAcitivty extends AppCompatActivity {
     EditText emailet,passet;
     FirebaseAuth auth;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     ProgressBar progressBar;
 
 
@@ -76,7 +76,8 @@ public class LoginAcitivty extends AppCompatActivity {
 
       if (emailet.getText().toString().trim().isEmpty()) {
             emailet.setError("Enter Email");
-        } else if (!emailet.getText().toString().trim().matches(emailPattern)) {
+        }
+          else if (!Patterns.EMAIL_ADDRESS.matcher(emailet.getText().toString().trim()).matches()) {
             emailet.setError("Email is not Valid");
         } else if (passet.getText().toString().trim().isEmpty()) {
             passet.setError("Enter password");
