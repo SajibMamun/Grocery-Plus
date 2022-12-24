@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -24,8 +25,11 @@ public class OfferFragmet extends Fragment implements AdapterView.OnItemSelected
     ImageView offerimgid;
     Button checkbutton;
     String level,coins;
+    ListView listView;
 
     String [] coinlist={"Select Coins",">=5000",">=10000",">=20000",">=3000",">=40000",">=50000",">=60000",">=70000",">=80000",">=90000"};
+
+    String[] offeritemlist={"Vegetable","Fruits","Plastic","Fish"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +39,7 @@ public class OfferFragmet extends Fragment implements AdapterView.OnItemSelected
         radioGroup=root.findViewById(R.id.RadioGroupid);
         spinner=root.findViewById(R.id.Spinnerid);
         offerimgid=root.findViewById(R.id.offerimgid);
+        listView=root.findViewById(R.id.listviewid);
 
         ArrayAdapter arrayAdapter=new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item,coinlist);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,6 +74,12 @@ public class OfferFragmet extends Fragment implements AdapterView.OnItemSelected
 
             }
         });
+
+
+
+        ArrayAdapter<String> myadapter=new ArrayAdapter<>(getContext(),R.layout.customlayout,R.id.textviewidcustom,offeritemlist);
+        listView.setAdapter(myadapter);
+
 
 
 
